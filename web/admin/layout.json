@@ -1,0 +1,111 @@
+{
+   "title": "Панель администратора",
+   "rightButton": "logout",
+   "leftButton": "site",
+   "url": "/admin",
+   "hasContent": false,
+   "menu": [
+      {
+         "title": "Редактировать прайс лист",
+         "leftButton": "back",
+         "rightButton": "logout",
+         "hasContent": false,
+         "url": "/admin/boards/uslugi/",
+         "menu": [
+            {
+               "title": "Прайс лист",
+               "url": "/admin/boards/uslugi/pricelist/",
+               "leftButton": "back",
+               "rightButton": "logout",
+               "hasContent": true,
+               "menu": [
+                  {
+                     "title": "Добавить",
+                     "leftButton": "back",
+                     "rightButton": "logout",
+                     "url": "/admin/boards/uslugi/pricelist/add/",
+                     "hasContent": true
+                  }
+               ]
+            },
+            {
+               "title": "Разделы",
+               "url": "/admin/boards/uslugi/sections/",
+               "leftButton": "back",
+               "rightButton": "logout",
+               "hasContent": true,
+               "menu": [
+                  {
+                     "title": "Добавить раздел",
+                     "leftButton": "back",
+                     "rightButton": "logout",
+                     "url": "/admin/boards/uslugi/sections/add/",
+                     "hasContent": true
+                  }
+               ]
+            },
+            {
+               "title": "Типы авто",
+               "leftButton": "back",
+               "rightButton": "logout",
+               "url": "/admin/boards/uslugi/cartypes/",
+               "hasContent": true,
+               "menu": [
+                  {
+                     "title": "Добавить тип авто",
+                     "leftButton": "back",
+                     "rightButton": "logout",
+                     "url": "/admin/boards/uslugi/cartypes/add/",
+                     "hasContent": true
+                  }
+               ]
+            },
+            {
+               "title": "Детали",
+               "leftButton": "back",
+               "rightButton": "logout",
+               "url": "/admin/boards/uslugi/details/",
+               "hasContent": true,
+               "menu": [
+                  {
+                     "title": "Добавить деталь",
+                     "leftButton": "back",
+                     "rightButton": "logout",
+                     "url": "/admin/boards/uslugi/details/add/",
+                     "hasContent": true
+                  }
+               ]
+            },
+            {
+               "title": "Работы",
+               "leftButton": "back",
+               "rightButton": "logout",
+               "url": "/admin/boards/uslugi/works/",
+               "hasContent": true,
+               "menu": [
+                  {
+                     "title": "Добавить вид работы",
+                     "leftButton": "back",
+                     "rightButton": "logout",
+                     "url": "/admin/boards/uslugi/works/add/"
+                  }
+               ]
+            }
+         ]
+      },
+      {
+         "title": "Мои клиенты",
+         "leftButton": "back",
+         "rightButton": "logout",
+         "url": "/admin/boards/users/",
+         "hasContent": true
+      },
+      {
+         "title": "Редактировать сайт",
+         "leftButton": "back",
+         "rightButton": "logout",
+         "url": "/admin/editsite",
+         "hasContent": true
+      }
+   ]
+}

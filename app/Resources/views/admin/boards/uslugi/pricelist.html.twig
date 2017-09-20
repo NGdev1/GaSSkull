@@ -1,0 +1,124 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        var newOption;
+
+        var sectionSelect = $('#sectionSelect');
+
+        {% for section in sections %}
+        newOption = $('<option/>', {
+            text: '{{ section.name }}',
+            'value': '{{ section.id }}'
+        });
+
+        sectionSelect.append(newOption);
+        {% endfor %}
+
+        sectionSelect.change(function () {
+            var selectedSection = sectionSelect.find('option:selected');
+            var filter = '';
+            if (selectedSection.val() != -1) {
+                filter = selectedSection.text();
+            }
+
+            filterTable($('#price_list').find('tbody'), filter, 'tabledit-span', 'text-muted');
+        })
+    })
+</script>
+
+<div class="center bold text">Раздел:</div>
+<select id="sectionSelect" style="width: 50%;" class="input_green center">
+    <option value="-1">Все</option>
+</select>
+
+<div>Прайс лист:</div>
+
+<div id="table-container">
+    <table id="price_list">
+        <thead>
+        <tr>
+            <th onclick="sortTable($('#price_list').find('tbody'), 0, 'tabledit-span', 'number')">#</th>
+            <th onclick="sortTable($('#price_list').find('tbody'), 1, 'tabledit-span', 'string')">Раздел</th>
+            <th onclick="sortTable($('#price_list').find('tbody'), 2, 'tabledit-span', 'string')">Тип авто</th>
+            <th onclick="sortTable($('#price_list').find('tbody'), 3, 'tabledit-span', 'string')">Название детали</th>
+            <th onclick="sortTable($('#price_list').find('tbody'), 4, 'tabledit-span', 'string')">Название работы</th>
+            <th onclick="sortTable($('#price_list').find('tbody'), 5, 'tabledit-span', 'number')">Цена</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for item in priceList %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.section.name }}</td>
+            <td>{{ item.carType.name }}</td>
+            <td>{{ item.detail.name }}</td>
+            <td>{{ item.work.name }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+<div style="margin: 30px"></div>
+
+<script type="text/javascript">
+    var sections = {};
+    {% for section in sections %}
+    sections[{{ section.id }}] = "{{ section.name }}";
+    {% endfor %}
+
+    var carTypes = {};
+    {% for carType in carTypes %}
+    carTypes[{{ carType.id }}] = "{{ carType.name }}";
+    {% endfor %}
+
+    var works = {};
+    {% for work in works %}
+    works[{{ work.id }}] = "{{ work.name }}";
+    {% endfor %}
+
+    var details = {};
+    {% for detail in details %}
+    details[{{ detail.id }}] = "{{ detail.name }}";
+    {% endfor %}
+
+    $('#price_list').Tabledit({
+        url: '{{ path('price_list_edit_api') }}',
+        inputClass: 'input_green',
+        buttons: {
+            edit: {
+                class: 'button button-edit-table',
+                html: '<span class="glyphicon glyphicon-pencil"></span>',
+                action: 'edit',
+                method: 'POST'
+            },
+            delete: {
+                class: 'button button-edit-table',
+                html: '<span class="glyphicon glyphicon-trash"></span>',
+                action: 'delete',
+                method: 'DELETE'
+            },
+            save: {
+                class: 'button button-save',
+                html: 'Сохранить'
+            },
+            restore: {
+                class: 'button btn-sm btn-warning',
+                html: 'Восстановить',
+                action: 'restore'
+            },
+            confirm: {
+                class: 'button button-delete',
+                html: 'Подтвердить'
+            }
+        },
+        columns: {
+            identifier: [0, 'id'],
+            editable: [[1, 'sectionId', sections], [2, 'carTypeId', carTypes], [3, 'detailId', details], [4, 'workId', works], [5, 'price']]
+        }
+    });
+
+</script>

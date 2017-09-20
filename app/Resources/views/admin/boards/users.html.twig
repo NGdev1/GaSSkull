@@ -1,0 +1,27 @@
+<div id="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Имя</th>
+            <th>Номер авто</th>
+            <th>Тип авто</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.carNumber }}</td>
+            <td>{{ user.carType.name }}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+<div style="margin: 30px"></div>
